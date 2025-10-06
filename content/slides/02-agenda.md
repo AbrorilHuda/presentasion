@@ -1,6 +1,6 @@
 ---
 title: "Agenda"
-notes: "Keep this under 60s. Emphasize animations and presenter tools."
+notes: "Agenda presentasion"
 align: "left"
 layout: "bullets"
 ---
