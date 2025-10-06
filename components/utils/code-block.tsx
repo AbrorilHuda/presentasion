@@ -1,0 +1,23 @@
+"use client"
+import Highlight, { defaultProps } from "prism-react-renderer"
+import theme from "prism-react-renderer/themes/vsDark"
+
+export default function CodeBlock({ code, lang = "tsx" }: { code: string; lang?: string }) {
+  return (
+    <div className="rounded-md overflow-hidden bg-black/80 text-white">
+      <Highlight {...defaultProps} code={code.trim()} language={lang as any} theme={theme}>
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={`${className} p-4 text-sm overflow-auto`} style={style}>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    </div>
+  )
+}
