@@ -1,6 +1,7 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-
+@import "tailwindcss";
+@import "tw-animate-css";
+/* sementara disebabkan masih fiks permasalahan */
+@source inline("text-orange-300");
 @custom-variant dark (&:is(.dark *));
 
 :root {

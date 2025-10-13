@@ -6,4 +6,6 @@ align: "center"
 layout: "title"
 ---
 
-Amir Hamzah, Moh.Abroril Huda, M. David, Nor Hasanah ::i[text-autor]
+Amir Hamzah, Moh.Abroril Huda, M. David, Nor Hasanah ::i[author]
+
+[document Article](https://docs.google.com/document/d/19I-SwfMgVVLhl8mAkRVU4xWS5wTN7H_2Qjvu_o_FVj4/edit?usp=sharing) ::i[text-orange-300]

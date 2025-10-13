@@ -1,17 +1,12 @@
 import "server-only";
-
+// uji coba server.ts code no usage
 import path from "node:path";
-
-// NOTE: import fs inside functions to minimize any top-level footprint
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-// import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
-// import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import matter from "gray-matter";
-import type { SlideData } from "@/lib/types";
 
 type CompiledSlide = {
   html: string;
@@ -104,7 +99,13 @@ async function readSlideFile(fileName: string): Promise<string> {
   return await readFile(full, "utf8");
 }
 
-export async function getSlides(): Promise<SlideData[]> {
+type GetSlideData = {
+  id: string;
+  title: string;
+  html: string;
+  notes?: string;
+};
+export async function getSlides(): Promise<GetSlideData[]> {
   const files = await listSlideFiles();
   const compiled = await Promise.all(
     files.map(async (f) => {
@@ -117,7 +118,9 @@ export async function getSlides(): Promise<SlideData[]> {
   return compiled;
 }
 
-export async function getSlideByIndex(idx: number): Promise<SlideData | null> {
+export async function getSlideByIndex(
+  idx: number
+): Promise<GetSlideData | null> {
   const slides = await getSlides();
   if (idx < 1 || idx > slides.length) return null;
   return slides[idx - 1];

@@ -86,8 +86,8 @@ export const customDirectivePlugin: Plugin<[], Root> = () => {
 
           target.data.hProperties.className = className;
 
-          //   console.log(`✅ Applied class "${className}" to ${target.type}`);
-          //   console.log(`   Data:`, JSON.stringify(target.data, null, 2));
+          // console.log(`✅ Applied class "${className}" to ${target.type}`);
+          // console.log(`   Data:`, JSON.stringify(target.data, null, 2));
         }
       }
     });
