@@ -16,7 +16,7 @@ type DeckContextType = {
   direction: "forward" | "backward"
 }
 
-const DeckContext = createContext<DeckContextType | null>(null)
+export const DeckContext = createContext<DeckContextType | null>(null)
 
 export function DeckProvider({
   children,

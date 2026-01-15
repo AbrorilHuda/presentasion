@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useDeck } from "@/hooks/use-deck";
 import type { SlideData } from "@/lib/types";
 import SlideRenderer from "@/components/slide-renderer";
 import { cn } from "@/lib/utils";
+import { getAllSlides } from "@/lib/slide-storage";
 
 export const dynamic = "force-static";
 
@@ -14,18 +14,26 @@ export default function PresenterPage() {
 
 function PresenterLoader() {
   const [slides, setSlides] = useState<SlideData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch("/print?format=json", { cache: "no-store" });
-      const data = (await res.json()) as SlideData[];
-      setSlides(data);
-    })();
+    // Load slides from localStorage on client-side
+    const loadedSlides = getAllSlides();
+    setSlides(loadedSlides);
+    setIsLoading(false);
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="p-6 text-muted-foreground">Loading presenter view…</div>
+    );
+  }
 
   if (!slides.length) {
     return (
-      <div className="p-6 text-muted-foreground">Loading presenter view…</div>
+      <div className="p-6 text-muted-foreground">
+        No slides found. Please create slides in the admin dashboard first.
+      </div>
     );
   }
 
@@ -33,15 +41,20 @@ function PresenterLoader() {
 }
 
 function PresenterContent({ slides }: { slides: SlideData[] }) {
-  const { currentIndex, goNext, goPrev, setTotalSlides } = useDeck();
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const totalSlides = slides.length;
   const [showNotes, setShowNotes] = useState(true);
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const timerRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    setTotalSlides(slides.length);
-  }, [slides.length, setTotalSlides]);
+  const goNext = () => {
+    setCurrentIndex((prev) => Math.min(totalSlides, prev + 1));
+  };
+
+  const goPrev = () => {
+    setCurrentIndex((prev) => Math.max(1, prev - 1));
+  };
 
   useEffect(() => {
     if (!running) {
@@ -88,8 +101,6 @@ function PresenterContent({ slides }: { slides: SlideData[] }) {
     const s = elapsed % 60;
     return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   }, [elapsed]);
-
-  const totalSlides = slides.length;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 md:p-6 min-h-screen">

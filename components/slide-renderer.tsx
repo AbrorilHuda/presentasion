@@ -20,8 +20,10 @@ export default function SlideRenderer({
   print?: boolean;
 }) {
   const { direction } = useDeck();
+
   // Keyboard navigation disabled in presenter preview panes
-  useKeyboardNav();
+  const shouldEnableKeyboard = !presenter && !preview;
+  useKeyboardNav(shouldEnableKeyboard);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = [
@@ -36,16 +38,16 @@ export default function SlideRenderer({
     fm.align === "left"
       ? "items-start text-left"
       : fm.align === "right"
-      ? "items-end text-right"
-      : "items-center text-center";
+        ? "items-end text-right"
+        : "items-center text-center";
 
   const bgStyle: React.CSSProperties = fm.bg
     ? fm.bg.startsWith("url(") || fm.bg.includes("gradient")
       ? {
-          backgroundImage: fm.bg,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }
+        backgroundImage: fm.bg,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }
       : { background: fm.bg }
     : {};
 

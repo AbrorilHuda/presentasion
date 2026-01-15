@@ -3,9 +3,11 @@
 import { useEffect } from "react"
 import { useDeck } from "./use-deck"
 
-export function useKeyboardNav() {
+export function useKeyboardNav(enabled = true) {
   const { goNext, goPrev, goTo, totalSlides } = useDeck()
   useEffect(() => {
+    if (!enabled) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault()
@@ -23,5 +25,5 @@ export function useKeyboardNav() {
     }
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
-  }, [goNext, goPrev, goTo, totalSlides])
+  }, [enabled, goNext, goPrev, goTo, totalSlides])
 }
