@@ -6,11 +6,12 @@ import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import "../styles/globals.css";
-const urlSite = "https://slide.dcnunira.dev"
+const urlSite = "https://slide.dcnunira.dev";
 
 export const metadata: Metadata = {
   title: "Slide Presentation - Custom Web Presentation Tool",
-  description: "Create beautiful, interactive slide presentations directly in your browser. Built by abrordc modern web technologies.",
+  description:
+    "Create beautiful, interactive slide presentations directly in your browser. Built by abrordc modern web technologies.",
 
   keywords: [
     "slide presentation",
@@ -20,14 +21,14 @@ export const metadata: Metadata = {
     "slide deck",
     "abrordc",
     "next.js presentation",
-    "interactive slides"
+    "interactive slides",
   ],
 
   authors: [
     {
       name: "abrordc",
-      url: "https://github.com/abrorilhuda"
-    }
+      url: "https://github.com/abrorilhuda",
+    },
   ],
 
   creator: "abrorilhuda",
@@ -37,7 +38,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: urlSite,
     title: "Slide Presentation - Custom Web Presentation Tool",
-    description: "Create beautiful, interactive slide presentations directly in your browser. Built by abrordc.",
+    description:
+      "Create beautiful, interactive slide presentations directly in your browser. Built by abrordc.",
     siteName: "Slide Presentation",
     images: [
       {
@@ -49,11 +51,11 @@ export const metadata: Metadata = {
     ],
   },
 
-
   twitter: {
     card: "summary_large_image",
     title: "Slide Presentation - Custom Web Presentation Tool",
-    description: "Create beautiful, interactive slide presentations directly in your browser.",
+    description:
+      "Create beautiful, interactive slide presentations directly in your browser.",
     creator: "@abror_dc",
     images: [`${urlSite}/og-image.png`],
   },
@@ -75,7 +77,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Toaster position="top-right" />
-        {/* <Analytics /> */}
+        <Analytics />
       </body>
     </html>
   );
