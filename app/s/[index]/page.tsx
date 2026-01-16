@@ -1,25 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { getAllSlides, StoredSlide } from "@/lib/slide-storage";
 import { DeckProvider } from "@/components/deck-provider";
 import SlideRenderer from "@/components/slide-renderer";
 import Controls from "@/components/controls";
 import Progress from "@/components/progress";
 import ThemeToggle from "@/components/theme-toggle";
+import { useSlideSyncListener } from "@/hooks/use-slide-sync";
 
 export default function SlidePage() {
   const params = useParams();
+  const router = useRouter();
   const [slides, setSlides] = useState<StoredSlide[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Load slides from localStorage on client-side
     const loadedSlides = getAllSlides();
     setSlides(loadedSlides);
     setIsLoading(false);
   }, []);
+
+  // Listen for slide changes from presenter
+  useSlideSyncListener((newIndex) => {
+    router.push(`/s/${newIndex}`);
+  });
 
   if (isLoading) {
     return (

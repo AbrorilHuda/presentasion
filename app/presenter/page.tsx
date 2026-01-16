@@ -5,6 +5,7 @@ import type { SlideData } from "@/lib/types";
 import SlideRenderer from "@/components/slide-renderer";
 import { cn } from "@/lib/utils";
 import { getAllSlides } from "@/lib/slide-storage";
+import { useSlideSyncBroadcast } from "@/hooks/use-slide-sync";
 
 export const dynamic = "force-static";
 
@@ -17,7 +18,6 @@ function PresenterLoader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Load slides from localStorage on client-side
     const loadedSlides = getAllSlides();
     setSlides(loadedSlides);
     setIsLoading(false);
@@ -47,6 +47,9 @@ function PresenterContent({ slides }: { slides: SlideData[] }) {
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const timerRef = useRef<number | null>(null);
+
+  // Broadcast slide changes to other tabs
+  useSlideSyncBroadcast(currentIndex);
 
   const goNext = () => {
     setCurrentIndex((prev) => Math.min(totalSlides, prev + 1));
