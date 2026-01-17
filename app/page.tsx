@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogIn, Presentation, Eye, Settings } from "lucide-react";
+import { LogIn, Presentation, Eye, Settings, Text, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
@@ -70,6 +70,44 @@ export default function Home() {
               <Link href="/presenter">
                 <Button variant="outline" className="w-full" size="lg">
                   Open Presenter View
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Text className="w-5 h-5" />
+                Teleprompter Tool
+              </CardTitle>
+              <CardDescription>
+                teleprompter with presentation
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link href="/teleprompter">
+                <Button variant="outline" className="w-full" size="lg">
+                  Open Teleprompter View
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5" />
+                Parafrase AI
+              </CardTitle>
+              <CardDescription>
+                Parafrase teks dengan Google Gemini AI
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link href="/parafrase">
+                <Button variant="outline" className="w-full" size="lg">
+                  Open Parafrase Tool
                 </Button>
               </Link>
             </CardContent>
