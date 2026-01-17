@@ -11,7 +11,7 @@ const urlSite = "https://slide.dcnunira.dev";
 export const metadata: Metadata = {
   title: "Slide Presentation - Custom Web Presentation Tool",
   description:
-    "Create beautiful, interactive slide presentations directly in your browser. Built by abrordc modern web technologies.",
+    "Create beautiful, interactive slide presentations directly in your browser. Built by abrordc modern web technologies And Tools.",
 
   keywords: [
     "slide presentation",
@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "online slides",
     "presentation maker",
     "slide deck",
+    "slide dcn unira",
+    "tools dcn unira",
     "abrordc",
     "next.js presentation",
     "interactive slides",

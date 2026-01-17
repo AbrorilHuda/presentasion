@@ -16,6 +16,28 @@ export default function Home() {
           </p>
         </div>
 
+        {/* Donation Button */}
+        <div className="flex justify-center">
+          <Card className="hover:shadow-lg transition-shadow border-primary/50">
+            <CardContent className="pt-2 cursor-pointer">
+              <a
+                href="https://kreate.gg/mohabrorilhuda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-primary hover:text-primary/80 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+                <div>
+                  <div className="font-semibold">Support This Project</div>
+                  <div className="text-sm text-muted-foreground">Buy me a coffee</div>
+                </div>
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card className="hover:shadow-lg transition-shadow">
             <CardHeader>
@@ -29,7 +51,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Link href="/admin/login">
-                <Button className="w-full" size="lg">
+                <Button className="w-full cursor-pointer" size="lg">
                   <LogIn className="w-4 h-4 mr-2" />
                   Login to Admin
                 </Button>
@@ -49,7 +71,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Link href="/s/1">
-                <Button variant="outline" className="w-full" size="lg">
+                <Button variant="outline" className="w-full cursor-pointer" size="lg">
                   Open Slide Viewer
                 </Button>
               </Link>
@@ -68,7 +90,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Link href="/presenter">
-                <Button variant="outline" className="w-full" size="lg">
+                <Button variant="outline" className="w-full cursor-pointer" size="lg">
                   Open Presenter View
                 </Button>
               </Link>
@@ -87,7 +109,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Link href="/teleprompter">
-                <Button variant="outline" className="w-full" size="lg">
+                <Button variant="outline" className="w-full cursor-pointer" size="lg">
                   Open Teleprompter View
                 </Button>
               </Link>
@@ -106,7 +128,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Link href="/parafrase">
-                <Button variant="outline" className="w-full" size="lg">
+                <Button variant="outline" className="w-full cursor-pointer" size="lg">
                   Open Parafrase Tool
                 </Button>
               </Link>
@@ -127,7 +149,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <a href="https://github.com/abrorilhuda/presentasion" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="w-full" size="lg">
+                <Button variant="outline" className="w-full cursor-pointer" size="lg">
                   View on GitHub
                 </Button>
               </a>
