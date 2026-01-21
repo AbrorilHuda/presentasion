@@ -79,7 +79,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Toaster position="top-right" />
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );

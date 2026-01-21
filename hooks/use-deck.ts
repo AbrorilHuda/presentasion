@@ -7,7 +7,6 @@ import { DeckContext } from "@/components/deck-provider"
 export function useDeck() {
     const ctx = useContext(DeckContext)
     if (!ctx) {
-        // Return default values when not in DeckProvider (e.g., presenter mode)
         return {
             totalSlides: 0,
             currentIndex: 1,

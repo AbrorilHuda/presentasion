@@ -19,6 +19,7 @@ import type { StoredSlide } from "@/lib/slide-storage";
 import { updateSlide, deleteSlide } from "@/lib/slide-storage";
 import MediaManager from "./media-manager";
 import { toast } from "sonner";
+import { MarkdownEditor } from "@/components/markdown-editor";
 
 interface SlideEditorProps {
   slide: StoredSlide;
@@ -98,10 +99,10 @@ export default function SlideEditor({
     });
   };
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleContentChange = (value: string) => {
     setFormData({
       ...formData,
-      html: e.target.value,
+      html: value,
     });
   };
 
@@ -115,16 +116,17 @@ export default function SlideEditor({
     });
   };
 
+
   const insertMediaToContent = (url: string) => {
     const isVideo = url.includes("video") || url.startsWith("data:video");
+    // Use markdown for images, HTML for videos (markdown doesn't support video)
     const tag = isVideo
       ? `<video src="${url}" controls style="max-width: 100%; height: auto;"></video>`
-      : `<img src="${url}" alt="Inserted media" style="max-width: 100%; height: auto;" />`;
-    console.log("ketakan", tag)
+      : `![Inserted image](${url})`;
 
     const updatedFormData = {
       ...formData,
-      html: formData.html + "\n" + tag,
+      html: formData.html + "\n\n" + tag,
     };
 
     setFormData(updatedFormData);
@@ -165,18 +167,15 @@ export default function SlideEditor({
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Content (HTML)
+                Content (Markdown)
               </label>
-              <Textarea
+              <MarkdownEditor
                 value={formData.html}
                 onChange={handleContentChange}
-                placeholder="Enter HTML content"
-                rows={12}
-                className="font-mono text-sm"
+                placeholder="# Slide Title&#10;&#10;Write your content in **markdown**!&#10;&#10;```javascript&#10;const hello = 'world';&#10;```"
               />
               <p className="text-xs text-muted-foreground mt-2">
-                Tags: &lt;h1&gt; &lt;h2&gt; &lt;p&gt; &lt;ul&gt; &lt;li&gt;
-                &lt;img&gt; &lt;video&gt; &lt;strong&gt; &lt;em&gt;
+                ✨ Supports: Headings, Bold, Italic, Code blocks with syntax highlighting, Lists, Tables, Links, Images
               </p>
             </div>
           </CardContent>
@@ -259,10 +258,10 @@ export default function SlideEditor({
       </TabsContent>
 
       <div className="flex gap-2 pt-4">
-        <Button onClick={handleSave} disabled={isSaving}>
+        <Button onClick={handleSave} disabled={isSaving} className="cursor-pointer">
           {isSaving ? "Saving..." : "Save Changes"}
         </Button>
-        <Button variant="destructive" onClick={handleDelete}>
+        <Button variant="destructive" onClick={handleDelete} className="cursor-pointer">
           Delete Slide
         </Button>
       </div>

@@ -30,7 +30,7 @@ function getDefaultSlides(): StoredSlide[] {
         layout: "title",
         align: "center"
       },
-      html: "<h1>Welcome to Slide Presentation</h1><p>A modern web-based presentation tool</p><p class='text-muted-foreground'>Press <kbd>→</kbd> or <kbd>Space</kbd> to continue</p>",
+      html: "# Welcome to Slide Presentation\n\nA modern web-based presentation tool\n\n*Press → or Space to continue*",
     },
     {
       frontmatter: {
@@ -39,7 +39,7 @@ function getDefaultSlides(): StoredSlide[] {
         align: "left",
         notes: "Explain the three main modes of the application"
       },
-      html: "<h2>Three Ways to Use This App</h2><ul><li><strong>Admin Dashboard</strong> - Create and edit slides</li><li><strong>Slide Viewer</strong> - Present to your audience</li><li><strong>Presenter Mode</strong> - Present with notes and timer</li></ul>",
+      html: "## Three Ways to Use This App\n\n- **Admin Dashboard** - Create and edit slides\n- **Slide Viewer** - Present to your audience\n- **Presenter Mode** - Present with notes and timer",
     },
     {
       frontmatter: {
@@ -48,7 +48,25 @@ function getDefaultSlides(): StoredSlide[] {
         align: "left",
         notes: "Show how to access and use the admin dashboard"
       },
-      html: "<h2>Create Your Slides</h2><p>Go to <strong>/admin/login</strong> (password: <code>admin123</code>)</p><ul><li>Click <strong>Add Slide</strong> to create new slides</li><li>Edit content in the <strong>Content</strong> tab</li><li>Upload media in the <strong>Media</strong> tab</li><li>Configure settings in the <strong>Settings</strong> tab</li></ul><li>print to pdf <strong>slide</strong></li>",
+      html: "## Create Your Slides\n\nGo to **/admin/login** (password: `admin123`)\n\n- Click **Add Slide** to create new slides\n- Edit content in the **Content** tab using **Markdown**\n- Upload media in the **Media** tab\n- Configure settings in the **Settings** tab\n- Print to PDF using **Export PDF** button",
+    },
+    {
+      frontmatter: {
+        title: "Markdown Support ✨",
+        layout: "content",
+        align: "left",
+        notes: "Show markdown features and syntax highlighting"
+      },
+      html: "## Write Content in Markdown\n\n**Text Formatting:**\n- **Bold** with `**text**`\n- *Italic* with `*text*`\n- `Inline code` with backticks\n\n**Code Blocks with Syntax Highlighting:**\n\n```javascript\nfunction hello() {\n  console.log('Hello World!');\n}\n```\n\n**Lists, Tables, and More!**",
+    },
+    {
+      frontmatter: {
+        title: "Image support",
+        layout: "image",
+        align: "center",
+        notes: "Show image support"
+      },
+      html: "## Image support\n\n![Image](https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nfGVufDB8fDB8fHww)",
     },
     {
       frontmatter: {
@@ -57,7 +75,7 @@ function getDefaultSlides(): StoredSlide[] {
         align: "left",
         notes: "List all available keyboard shortcuts"
       },
-      html: "<h2>Navigate Like a Pro</h2><p><strong>Slide Viewer:</strong></p><ul><li><kbd>→</kbd> or <kbd>Space</kbd> - Next slide</li><li><kbd>←</kbd> - Previous slide</li><li><kbd>Home</kbd> - First slide</li><li><kbd>End</kbd> - Last slide</li></ul><p><strong>Presenter Mode:</strong></p><ul><li><kbd>T</kbd> - Start/Stop timer</li><li><kbd>N</kbd> - Toggle notes</li></ul>",
+      html: "## Navigate Like a Pro\n\n**Slide Viewer:**\n- `→` or `Space` - Next slide\n- `←` - Previous slide\n- `Home` - First slide\n- `End` - Last slide\n\n**Presenter Mode:**\n- `T` - Start/Stop timer\n- `N` - Toggle notes",
     },
     {
       frontmatter: {
@@ -66,7 +84,7 @@ function getDefaultSlides(): StoredSlide[] {
         align: "left",
         notes: "This is an example of speaker notes! Only visible in presenter mode."
       },
-      html: "<h2>Dual-Screen Presentation</h2><p>Open <strong>/presenter</strong> on your laptop to see:</p><ul><li>Current slide (full view)</li><li>Next slide preview</li><li>Speaker notes (like this one!)</li><li>Timer and slide counter</li></ul><p class='text-muted-foreground'>Perfect for professional presentations</p>",
+      html: "## Dual-Screen Presentation\n\nOpen **/presenter** on your laptop to see:\n\n- Current slide (full view)\n- Next slide preview\n- Speaker notes (like this one!)\n- Timer and slide counter\n\n*Perfect for professional presentations*",
     },
     {
       frontmatter: {
@@ -74,7 +92,7 @@ function getDefaultSlides(): StoredSlide[] {
         layout: "title",
         align: "center"
       },
-      html: "<h1>You're All Set!</h1><p>Delete these tutorial slides and create your own</p><p class='text-muted-foreground'>Go to <strong>/admin/dashboard</strong> to begin</p>",
+      html: "# You're All Set!\n\nDelete these tutorial slides and create your own\n\n*Go to **/admin/dashboard** to begin*",
     },
   ];
 }

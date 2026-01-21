@@ -8,6 +8,7 @@ import SlideEditor from "@/components/admin/slide-editor";
 import SlidesList from "@/components/admin/slides-list";
 import { getAllSlides, addSlide } from "@/lib/slide-storage";
 import type { SlideData } from "@/lib/types";
+import { File, Plus } from "lucide-react";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -44,6 +45,18 @@ export default function DashboardPage() {
     router.push("/admin/login");
   };
 
+  const handlePrint = () => {
+    const printWindow = window.open('/print', '_blank');
+
+    if (printWindow) {
+      printWindow.addEventListener('load', () => {
+        setTimeout(() => {
+          printWindow.print();
+        }, 2000);
+      });
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
@@ -58,16 +71,17 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between p-4 md:p-6">
           <h1 className="text-2xl font-bold">Slide Dashboard</h1>
           <div className="flex gap-2">
-            <Button variant="outline" onClick={handleAddSlide}>
-              Add Slide
+            <Button variant="outline" onClick={handleAddSlide} className="cursor-pointer">
+              <Plus /> Add Slide
             </Button>
             <Button
               variant="outline"
-              onClick={() => window.open('/print', '_blank')}
+              onClick={handlePrint}
+              className="cursor-pointer"
             >
-              Export PDF
+              <File /> Export PDF
             </Button>
-            <Button variant="ghost" onClick={handleLogout}>
+            <Button variant="ghost" onClick={handleLogout} className="cursor-pointer">
               Logout
             </Button>
           </div>

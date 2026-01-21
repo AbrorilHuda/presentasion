@@ -7,6 +7,7 @@ import { useDeck } from "@/hooks/use-deck";
 import { useKeyboardNav } from "@/hooks/use-keyboard-nav";
 import { useGsapEnterExit } from "@/hooks/use-gsap-enter-exit";
 import type { SlideData } from "@/lib/types";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
 
 export default function SlideRenderer({
   slide,
@@ -56,6 +57,12 @@ export default function SlideRenderer({
     print ? "aspect-auto overflow-visible" : "aspect-video overflow-hidden"
   );
 
+  // Detect if content is markdown (starts with # or contains markdown syntax)
+  const isMarkdown = slide.html.trim().startsWith('#') ||
+    slide.html.includes('```') ||
+    slide.html.includes('**') ||
+    slide.html.includes('##');
+
   return (
     <div
       ref={containerRef}
@@ -78,7 +85,7 @@ export default function SlideRenderer({
             </h1>
           </div>
         ) : null}
-        {/* Content (sanitized HTML) */}
+        {/* Content (Markdown or HTML) */}
         <div
           ref={itemRefs[1]}
           className={cn(
@@ -86,7 +93,11 @@ export default function SlideRenderer({
             print ? "" : "max-h-[65vh] md:max-h-[70vh] overflow-auto pr-2"
           )}
         >
-          <div dangerouslySetInnerHTML={{ __html: slide.html }} />
+          {isMarkdown ? (
+            <MarkdownRenderer content={slide.html} />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: slide.html }} />
+          )}
         </div>
         {/* Placeholder for utility items participating in stagger sequence */}
         <div ref={itemRefs[2]} className="hidden" />
